@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+option csharp_namespace = "SecureRX.Services.Identity.Protos";
+
+package user;
+
+// Service Name
+service ProtoUser {
+  // function
+  rpc Login (LoginRequestVM) returns (LoginResponseVM);
+  //rpc GetToken (LoginVM) returns (JsonWebTokenVM);
+}
+
+// request
+message LoginRequestVM {
+  string username = 1;
+  string password = 2;
+  string ipAddress = 3;
+  string application = 4;
+  int64 forSpecificGroupId = 5;
+}
+
+//message LoginVM {
+//  string username = 1;
+//  string password = 2;
+//}
+
+// response
+message LoginResponseVM {
+  bool requireOTPAuthentication = 1;
+  bool isVerified = 2;
+  string accessToken = 3;
+  string refreshToken = 4;
+  int64 expires = 5;
+}
+
+//message JsonWebTokenVM {
+//  string accessToken = 1;
+//  string refreshToken = 2;
+//  string expires = 3;
+//}
